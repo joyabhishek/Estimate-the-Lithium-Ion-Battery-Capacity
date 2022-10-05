@@ -51,12 +51,11 @@ def train_model(preprocessed_data):
 
     return reg
 
-# Create a text element and let the reader know the data is loading.
-#data_load_state = st.text('Loading data...')
-# Load all rows of data into the dataframe.
+
+data_load_state = st.text('Loading data...')
+#Load all rows of data into the dataframe.
 data = load_data()
-# Notify the reader that the data was successfully loaded.
-#data_load_state.text('Loading data...done!!')
+data_load_state.text('Loading data...done!!')
 
 #Create a copy of the raw data
 data_copy = data.copy()
@@ -71,14 +70,6 @@ scaler_model = scaler.fit(data_copy[['Cycle_Index', 'Discharge Time (s)','Decrem
 #Lets pre process the data
 preprocessed_data = preprocess_data(data_copy, discharge_Time_median, decrement_median, time_median, time_Constant_Current_median, scaler_model)
 
-#Data before preprocessing
-#st.subheader('Raw data')
-#st.write(data[['Cycle_Index','Discharge Time (s)','Decrement 3.6-3.4V (s)', 'Time at 4.15V (s)','Time constant current (s)', 'RUL']][0:5])
-
-#Data after preprocessing
-#st.subheader('Data after preprocessing')
-#st.write(preprocessed_data[['Cycle_Index','Discharge Time (s)','Decrement 3.6-3.4V (s)', 'Time at 4.15V (s)','Time constant current (s)']][0:5])
-
 #Model train
 lin_reg_model = train_model(preprocessed_data)
 
@@ -91,19 +82,9 @@ time_Constant_Current = st.text_input('Time constant current (s)', '6755.01')
 
 predict_rul_button = st.button("Predit RUL")
 if predict_rul_button:
-
     user_data = {'Cycle_Index': [float(cycle_Index)], 'Discharge Time (s)': [float(discharge_Time)], 'Decrement 3.6-3.4V (s)': [float(decrement)], 'Time at 4.15V (s)': [float(time)], 'Time constant current (s)': [float(time_Constant_Current)]}
     user_data =pd.DataFrame.from_dict(user_data)
-
-    st.subheader('Raw User data')
-    st.write(user_data)
-
     preprocessed_user_data = preprocess_data(user_data, discharge_Time_median, decrement_median, time_median, time_Constant_Current_median, scaler_model)
-
-    st.subheader('User data after preprocessing')
-    st.write(preprocessed_user_data)
-
     user_data_pred  = lin_reg_model.predict(preprocessed_user_data)
-    #st.subheader('Predicted RUL')
     st.write(f"Predicted RUL: {user_data_pred[0,0]}")
-    st.write(user_data_pred[0,0])
+
