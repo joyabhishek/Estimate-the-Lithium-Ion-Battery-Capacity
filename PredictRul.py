@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
 from math import sqrt
+import time
 
 st.title('Estimate the Lithium-Ion Battery Capacity based on the current readings')
 
@@ -88,3 +89,9 @@ if predict_rul_button:
     user_data_pred  = lin_reg_model.predict(preprocessed_user_data)
     st.write(f"Predicted RUL: {user_data_pred[0,0]}")
 
+    life = int(user_data_pred/1200 * 100)
+    st.write(f"Life left: {life}%")
+    progress = st.progress(0)
+    for i in range(life):
+        t.sleep(0.01)
+        progress.progress(i)
