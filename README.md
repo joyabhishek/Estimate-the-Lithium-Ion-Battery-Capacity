@@ -1,10 +1,5 @@
-### <div align="center">This is the deployment for my thesis</div>  
-  
-
-## **<div align="center">📝 Estimate Lithium-Ion Battery Capacity based on the current reading </div>**  
-  
-
-  
+### <div align="center">Deployment for my thesis</div>  
+## <div align="center">📝 Estimate Lithium-Ion Battery Capacity based on the current reading </div>
   
 <div align="center">
 
@@ -25,3 +20,4 @@ I will predict the RUL (Remaining useful life) of the battery
 <img src="https://github.com/joyabhishek/Estimate-the-Lithium-Ion-Battery-Capacity/blob/main/ezgif.com-gif-maker.gif" align="center" style="width: 100%" />
 </div>  
 
+### <div align="center">A thesis submitted in fulfulment for the Post Gradute Diploma in Artificial Intelligence and Machine Learning.University Of Hyderabad</div>
